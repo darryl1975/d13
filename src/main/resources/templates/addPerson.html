@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Person Record</title>`
+</head>
+<body>
+    <h1>Create Person</h1>
+
+    <form th:action="@{/person/addPerson}" th:object="${personForm}" method="POST">
+        <p>First Name: 
+            <input type="text" th:field="*{firstName}" />
+        </p>
+        <br />
+        <p>Last Name: 
+            <input type="text" th:field="*{lastName}" />
+        </p>
+        <br>
+        <br>
+        <input type="submit" value="Create" />
+    </form>
+
+    <div th:if="${errorMessage}" th:text="${errorMessage}" style="color:red; font-style:italic;"></div>
+</body>
+</html>

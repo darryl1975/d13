@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+    <h1>Person List</h1>
+    <a href="addPerson">Add Person</a>
+    <br /><br />
+    <div>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="person : ${persons}">
+                <td th:utext="${person.id}">...</td>
+                <td th:utext="${person.firstName}">...</td>
+                <td th:utext="${person.lastName}">...</td>
+                <td>
+                    <form th:action="@{/person/personToEdit}" th:object="${person}" method="POST">
+                        <input type="hidden" name="id" th:value="${person.id}" />
+                        <input type="hidden" name="firstName" th:value="${person.firstName}" />
+                        <input type="hidden" name="lastName" th:value="${person.lastName}" />
+                        <input type="submit" value="Update" />
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/person/personDelete}" th:object="${person}" method="POST">
+                        <input type="hidden" name="id" th:value="${person.id}" />
+                        <input type="hidden" name="firstName" th:value="${person.firstName}" />
+                        <input type="hidden" name="lastName" th:value="${person.lastName}" />
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
